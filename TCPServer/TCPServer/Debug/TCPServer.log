@@ -1,0 +1,4 @@
+﻿  TCPServer.cpp
+e:\поит-3-программирование серверных кроссплаформенных приложений\tcpserver\tcpserver\tcpserver.cpp(92): warning C4101: t2: неиспользованная локальная переменная
+e:\поит-3-программирование серверных кроссплаформенных приложений\tcpserver\tcpserver\tcpserver.cpp(92): warning C4101: t1: неиспользованная локальная переменная
+  TCPServer.vcxproj -> E:\ПОИТ-3-Программирование серверных кроссплаформенных приложений\TCPServer\Debug\TCPServer.exe

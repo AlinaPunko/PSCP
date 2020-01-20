@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let k = 0;
+
+        function Send() {
+            let socket = new WebSocket('ws:/localhost:4000/wsserver');
+            socket.onopen = () => {
+                console.log('onopen');
+                setInterval(() => {
+                    socket.send(++k);
+                    console.log('send');
+                }, 3000);
+                setTimeout(()=>{socket.close()}, 25000)
+            }
+            socket.onmessage = (e) => {
+                console.log('onmessage');
+                result.innerHTML += e.data;
+            }
+            socket.onerror = (e) => {
+                alert('error', e.message);
+            }
+        }
+    </script>
+        <button onclick="Send()">Click</button>
+        <div id='result'></div>
+</body>
+
+</html>

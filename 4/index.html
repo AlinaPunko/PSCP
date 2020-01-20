@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="get_result"></div>
+    <button onclick="Get()">Get</button>
+    <script>
+        function Get() {
+            fetch('http://localhost:3000/api/db', {
+                method: 'GET',
+                mode: 'no-cors',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                return response.json()
+            }).then(pdata => {
+                get_result.innerHTML = '';
+                pdata.forEach(el => {
+                    get_result.innerHTML += (el.id + '. ' + el.name + ' ' + el.bday + '</br>')
+                })
+            })
+        }
+    </script>
+
+    </br>
+
+    <div>
+        <div class='row'>
+            <label class="col-2">Идентификатор</label>
+            <input type="number" class="col-3" id="ID" min="0">
+        </div>
+        <div class='row'>
+            <label class="col-2">ФИО</label>
+            <input type="text" class="col-3" id="Name">
+        </div>
+        <div class='row'>
+            <label class="col-2">Дата рождения</label>
+            <input type="date" class="col-3" id="BDay">
+        </div>
+        <div class='row'>
+            <button class="col-2" onclick="Post()">Post</button>
+            <button class="col-2" onclick="Put()">Put</button>
+        </div>
+    </div>
+
+    </br>
+    <div class='row'>
+        <label class="col-2">ID</label>
+        <input type="number" class="col-3" id="DeleteID">
+    </div>
+    <div class='row'>
+        <button class="col-2" onclick="Delete()">Delete</button>
+    </div>
+
+    <script>
+        function Delete(){
+            fetch('http://localhost:3000/api/db', {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: DeleteID.value,
+                })
+            }).then(response => {
+                return response.json();
+            })
+            .then(pdata => {
+                get_result.innerHTML = '';
+                get_result.innerHTML += (pdata.id + '. ' + pdata.name + ' ' + pdata.bday + '</br>');
+            })
+        }
+
+        function Post() {
+            fetch('http://localhost:3000/api/db', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: ID.value,
+                    name: Name.value,
+                    bday: BDay.value
+                })
+            }).then(response => {
+                return response.json()
+            })
+        }
+
+        function Put(){
+            fetch('http://localhost:3000/api/db', {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: ID.value,
+                    name: Name.value,
+                    bday: BDay.value
+                })
+            }).then(response => {
+                return response.json()
+            })
+        }
+    </script>
+</body>
+
+</html>

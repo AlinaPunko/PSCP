@@ -1,0 +1,3 @@
+﻿  UDPClient.cpp
+e:\поит-3-программирование серверных кроссплаформенных приложений\udpserver\udpclient\udpclient.cpp(84): warning C4101: str3: неиспользованная локальная переменная
+  UDPClient.vcxproj -> E:\ПОИТ-3-Программирование серверных кроссплаформенных приложений\UDPServer\Debug\UDPClient.exe

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href='css/1.css'>
+    <script src="js/test.js"></script>
+</head>
+
+<body>
+    <h2 class='test'>Css test</h2>
+    <div id="get_result"></div>
+    <video width="400" height="300" controls="controls" src="video/test.mp4"></video>
+    <image src="image/test.png">
+        <button onclick="getJSON()">JSON</button>
+        <button onclick="getXML()">XML</button>
+        <script>
+            getJSON = () => {
+                fetch('http://localhost:3000/json/test.json', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                    }).then(response => {
+                        debugger
+                        return response.json();
+                    })
+                    .then(pdata => {
+                        get_result.innerHTML = '';
+                        get_result.innerHTML += JSON.stringify(pdata)
+                    })
+            }
+            getXML = () => {
+                fetch('http://localhost:3000/xml/text.xml', {
+                        method: 'GET',
+                        headers: {
+                            'Content-type': 'application/xml',
+                            'Accept': 'application/xml'
+                        },
+                    }).then(response => response.text())
+                    .then(str => new DOMParser().parseFromString(str, 'text/xml'))
+                    .then(pdata => {
+                        get_result.innerHTML = '';
+                        get_result.innerHTML = pdata;
+                    });
+            }
+        </script>
+</body>
+
+</html>

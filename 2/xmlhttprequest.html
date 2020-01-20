@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="result"></div>
+<script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:5000/api/name', true);
+    xhr.setRequestHeader('Access-Control-Allow-Origin','http://localhost:5000/xmlhttprequest')
+    xhr.send();
+    xhr.onload = function() {
+        if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+            alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); // Например, 404: Not Found
+        } else { // если всё прошло гладко, выводим результат
+           document.getElementById("result").innerHTML = xhr.responseText;
+        }
+    };
+</script>
+</body>
+</html>

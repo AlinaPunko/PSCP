@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="result"></div>
+<script>
+   fetch('http://localhost:5000/api/name', {method:'GET', headers:{'Content-type': 'text/plain'}})
+    .then(response=>{return response.text()})
+    .then(pdata=>document.getElementById("result").innerHTML=pdata);
+</script>
+</body>
+</html>
